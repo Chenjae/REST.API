@@ -24,5 +24,14 @@ public class ControllerExceptionHandler {
 		e.printStackTrace();
 		response.sendError(500);
 	}
+	
+	@ExceptionHandler
+	public void handleBadCredentialsException(BadCredentialsException e, 
+			HttpServletResponse response) throws IOException {
+		log.info(e.getMessage());
+		response.sendError(401);
+		//401 : 로그인시 에러
+		//403 : 인증이 안됐거나, 권한이 부족할 경우
+	}
 }
 
